@@ -4,7 +4,7 @@
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
 
-
+	$ql = "select * from customer";
 	
 	$sql = "select fname, mname, lname, role, email from users where email = '$email' and password = '$password'";
 
