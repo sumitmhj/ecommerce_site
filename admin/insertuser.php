@@ -17,13 +17,9 @@
 	$run = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 	if($run){
-    echo "Data inserted";
-    if($_SESSION['role'] == "ADMIN" || $_SESSION['role'] == "STAFF" ){
+    // echo "Data inserted";
   		header("Location: http://localhost/Bootstraps/admin/users.php");
-		}else{
-			 header("Location: http://localhost/Bootstraps/index.php");
-		}
-   
+	
 	}else{
     echo "Unable to insert data";
 	}

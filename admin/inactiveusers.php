@@ -16,18 +16,8 @@ if($_SESSION['role'] == "CUSTOMER"){
 	<div class="container mt-4">
 
     <div class ="row justify-content-between">
-      <h3 class = "col-md-3">Active User List</h3>
-       <?php if($_SESSION['role'] == "ADMIN"){ ?>
-      <div class = "col-md-3">
-          <button type="button" class="btn btn-warning col-md-5 ">
-            <a class ="text-decoration-none text-dark" href="http://localhost/Bootstraps/admin/addusers.php" role="button">Add Users</a>
-          </button>
-
-          <button type="button" class="btn btn-primary col-md-6">
-            <a class ="text-decoration-none text-white" href="http://localhost/Bootstraps/admin/inactiveusers.php" role="button">Inactive Users</a>
-          </button>
-      </div>
-      <?php } ?>
+      <h3 class = "col-md-3">Inactive User List</h3>
+      
     </div>
 
     <table class="table">
@@ -51,7 +41,7 @@ if($_SESSION['role'] == "CUSTOMER"){
       <tbody>
         <?php
                     require 'connection.php';
-                    $sql = "select * from users where isactive = 1";
+                    $sql = "select * from users where isactive = 0";
 
                     $result = $conn-> query($sql);
 
@@ -69,9 +59,7 @@ if($_SESSION['role'] == "CUSTOMER"){
 
                     $initial_page = ($page-1)* $limit;
                   
-                    $getQuery = "select * from users where isactive = 1 LIMIT " .$initial_page.', '.$limit;
-
-                    echo $getQuery;
+                    $getQuery = "select * from users where isactive = 0 LIMIT " .$initial_page.', '.$limit;
 
                      $result = mysqli_query($conn, $getQuery);
 
@@ -92,18 +80,22 @@ if($_SESSION['role'] == "CUSTOMER"){
                   <!-- <th scope="col"><?php echo $row["isactive"]; ?></th> -->
                   <?php if($_SESSION['role'] == "ADMIN"){ ?>
                   <th scope="col" class="col-3 justify-content-between">
-                    <button type="button" class="col btn btn-warning offset-md-1">
+                    <button type="button" class="col-3 btn btn-warning  offset-md-1">
                         <a class ="text-decoration-none text-dark" href="editusers.php?id=<?php echo $row["id"];?>" role="button" >Edit</a>
                     </button>
 
-                    <button type="button" class="col btn btn-warning">
+                    <button type="button" class="col-3 btn btn-warning ">
                         <a class ="text-decoration-none text-dark" href ="deleteusers.php?id=<?php echo $row["id"];?>" role = "button">Delete</a>
                     </button>
-                  
-                    <button type="button" class="col btn btn-warning">
-                        <a class ="text-decoration-none text-dark" href ="useraction.php?id=<?php echo $row["id"]?>&action=deactivate" role = "button">Inactivate</a>
+
+                     <button type="button" class="col-4 btn btn-warning ">
+                        <a class ="text-decoration-none text-dark" href ="useraction.php?id=<?php echo $row["id"];?>&action=activate" role = "button">Activate</a>
                     </button>
-                  </th>  
+
+                    
+
+                  
+                  </th>
                    <?php } ?>
           </tr>
     
@@ -116,7 +108,7 @@ if($_SESSION['role'] == "CUSTOMER"){
 
      <?php
        for($p = 1; $p <= $total_pages; $p++){ 
-        echo '<a href = "users.php?page='.$p.'">'.$p.'</a>';
+        echo '<a href = "inactiveusers.php?page='.$p.'">'.$p.'</a>';
       }
         ?>
 	</div>

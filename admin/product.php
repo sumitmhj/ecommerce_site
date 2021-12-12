@@ -50,6 +50,24 @@ if($_SESSION['role'] == "CUSTOMER"){
                     $sql = "select productitem.id, productitem.pname, productitem.description, productitem.size, productitem.stock,  productitem.discount, productitem.price, productitem.color, productitem.brandnew, productitem.specialoffer, productitem.material, category.name  from productitem inner join category on productitem.category_id = category.id";
                     $result = $conn-> query($sql);
 
+                    $limit= 5; 
+
+                    $total_rows = mysqli_num_rows($result); //new
+                   
+                    $total_pages = ceil($total_rows / $limit); //new
+                   
+                    if (!isset ($_GET['page'])){
+                      $page = 1;
+                    }else{
+                      $page= $_GET['page'];
+                    } 
+
+                    $initial_page = ($page-1)* $limit;
+                  
+                    $getQuery = "select productitem.id, productitem.pname, productitem.description, productitem.size, productitem.stock,  productitem.discount, productitem.price, productitem.color, productitem.brandnew, productitem.specialoffer, productitem.material, category.name  from productitem inner join category on productitem.category_id = category.id LIMIT " .$initial_page.', '.$limit;
+
+                     $result = mysqli_query($conn, $getQuery);
+
                     if($result -> num_rows >0){
                         while($row = $result->fetch_assoc()){
                         	STATIC $count = 0;
@@ -68,7 +86,7 @@ if($_SESSION['role'] == "CUSTOMER"){
                   <th scope="col"><?php echo $row["specialoffer"]; ?></th>
                   <th scope="col"><?php echo $row["brandnew"]; ?></th>
                   <th scope="col"><?php echo $row["description"]; ?></th>
-                  <th scope="col">
+                  <th scope="col" class="col-2 justify-content-between">
                   	<button type="button" class="btn btn-warning col-md-5 ">
                         <a class ="text-decoration-none text-dark" href="editproduct.php?id=<?php echo $row["id"];?>" role="button" >Edit</a>
                     </button>
@@ -84,6 +102,11 @@ if($_SESSION['role'] == "CUSTOMER"){
     
   			</tbody>
 		</table>
+          <?php
+       for($p = 1; $p <= $total_pages; $p++){ 
+        echo '<a href = "product.php?page='.$p.'">'.$p.'</a>';
+      }
+        ?>
 	</div>
 
 <?php require "../include/footer.php";?>	
