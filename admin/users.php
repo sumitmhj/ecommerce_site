@@ -36,6 +36,7 @@ if($_SESSION['role'] == "CUSTOMER"){
           <th scope="col">#</th>
           <th scope="col">Full Name</th>
           <th scope="col">Email</th>
+          <th scope="col">M/F</th>
           <th scope="col">User name</th>
           <th scope="col">Contact No</th>
           <th scope="col">Address</th>
@@ -84,6 +85,7 @@ if($_SESSION['role'] == "CUSTOMER"){
                   <th scope="col"><?php echo $count; ?></th>
                   <th scope="col"><?php echo $row["fname"]." ".$row["mname"]." ".$row["lname"]; ?></th>
                   <th scope="col"><?php echo $row["email"]; ?></th>
+                  <th scope="col"><?php echo $row["gender"]; ?></th>
                   <th scope="col"><?php echo $row["username"]; ?></th>
                   <th scope="col"><?php echo $row["contact"]; ?></th>
                   <th scope="col"><?php echo $row["address"]; ?></th>

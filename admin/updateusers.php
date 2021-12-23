@@ -8,6 +8,7 @@ $id = $_GET["id"];
 $fname = $_POST["fname"];
 $mname = $_POST["mname"];
 $lname = $_POST["lname"];
+$gender = $_POST["gender"];
 $email = $_POST["email"];
 $password = md5($_POST["password"]);
 $username = $_POST["username"];
@@ -22,7 +23,7 @@ if($_POST["password"]){
     $add = "password = '".$password."',";
 }
 
-$query = "update users set fname = '".$fname."', mname = '".$mname."', lname = '".$lname."', email = '".$email."', username = '".$username."', $add  contact = '".$contact."', address = '".$address."', city = '".$city."', role = '".$role."', isactive = '".$isactive."' where id = ".$id;
+$query = "update users set fname = '".$fname."', mname = '".$mname."', lname = '".$lname."', gender = '".$gender."', email = '".$email."', username = '".$username."', $add  contact = '".$contact."', address = '".$address."', city = '".$city."', role = '".$role."', isactive = '".$isactive."' where id = ".$id;
 
 // echo $query;
 // die();

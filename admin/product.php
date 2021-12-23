@@ -39,6 +39,8 @@ if($_SESSION['role'] == "CUSTOMER"){
 			      <th scope="col">isOffer</th>
 			      <th scope="col">Brand New</th>
                   <th scope="col">Description</th>
+                  <th scope="col">User</th> 
+                  <!-- new added code -->
 			      <th scope="col">Action</th>
 				</tr>
 			</thead>
@@ -50,7 +52,7 @@ if($_SESSION['role'] == "CUSTOMER"){
                     $sql = "select productitem.id, productitem.pname, productitem.description, productitem.size, productitem.stock,  productitem.discount, productitem.price, productitem.color, productitem.brandnew, productitem.specialoffer, productitem.material, category.name  from productitem inner join category on productitem.category_id = category.id";
                     $result = $conn-> query($sql);
 
-                    $limit= 5; 
+                    $limit= 10; 
 
                     $total_rows = mysqli_num_rows($result); //new
                    
@@ -64,7 +66,9 @@ if($_SESSION['role'] == "CUSTOMER"){
 
                     $initial_page = ($page-1)* $limit;
                   
-                    $getQuery = "select productitem.id, productitem.pname, productitem.description, productitem.size, productitem.stock,  productitem.discount, productitem.price, productitem.color, productitem.brandnew, productitem.specialoffer, productitem.material, category.name  from productitem inner join category on productitem.category_id = category.id LIMIT " .$initial_page.', '.$limit;
+                    // $getQuery = "select productitem.id, productitem.pname, productitem.description, productitem.size, productitem.stock,  productitem.discount, productitem.price, productitem.color, productitem.brandnew, productitem.specialoffer, productitem.material, category.name  from productitem inner join category on productitem.category_id = category.id LIMIT " .$initial_page.', '.$limit;
+
+                    $getQuery = "select productitem.id, productitem.pname, productitem.description, productitem.size, productitem.stock,  productitem.discount, productitem.price, productitem.color, productitem.brandnew, productitem.specialoffer, productitem.material, users.fname, category.name  from productitem inner join category on productitem.category_id = category.id inner join users on productitem.user_id = users.id LIMIT " .$initial_page.', '.$limit;
 
                      $result = mysqli_query($conn, $getQuery);
 
@@ -86,6 +90,8 @@ if($_SESSION['role'] == "CUSTOMER"){
                   <th scope="col"><?php echo $row["specialoffer"]; ?></th>
                   <th scope="col"><?php echo $row["brandnew"]; ?></th>
                   <th scope="col"><?php echo $row["description"]; ?></th>
+                  <th scope="col"><?php echo $row["fname"]; ?></th>      
+                  <!-- added codes -->
                   <th scope="col" class="col-2 justify-content-between">
                   	<button type="button" class="btn btn-warning col-md-5 ">
                         <a class ="text-decoration-none text-dark" href="editproduct.php?id=<?php echo $row["id"];?>" role="button" >Edit</a>

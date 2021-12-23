@@ -12,10 +12,11 @@
 	$brandnew = $_POST['new'];
 	$specialoffer  = $_POST['offer'];
 	$category  = $_POST['category'];
+	// $id = $_POST['id1'];
 
 
 
-	$query = "insert into productitem(pname, description, discount, price, size, color, material, category_id, brandnew, specialoffer, stock) values('$productname', '$description', '$discount', '$price', '$size', '$color', '$material', '$category', '$brandnew', '$specialoffer', '$stock')";
+	$query = "insert into productitem(pname, description, discount, price, size, color, material, category_id, brandnew, specialoffer, stock, user_id) values('$productname', '$description', '$discount', '$price', '$size', '$color', '$material', '$category', '$brandnew', '$specialoffer', '$stock','$_SESSION["id"]')";
 
 	$run = mysqli_query($conn, $query) or die(mysqli_error($conn));
 

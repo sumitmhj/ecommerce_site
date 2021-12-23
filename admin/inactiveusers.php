@@ -62,6 +62,7 @@ if($_SESSION['role'] == "CUSTOMER"){
                     $getQuery = "select * from users where isactive = 0 LIMIT " .$initial_page.', '.$limit;
 
                      $result = mysqli_query($conn, $getQuery);
+                    
 
                     if($result -> num_rows >0){
                         while($row = $result->fetch_assoc()){

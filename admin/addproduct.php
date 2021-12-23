@@ -74,6 +74,9 @@ if($_SESSION['role'] == "CUSTOMER"){
                 </select>
               </div>
 
+              <!-- <input type="hidden" name="id1" value = "<?php echo $_SESSION["id"];?> ">  -->
+              <!-- new codes --> 
+
               <div class="col-12">
                 <button type="submit" class="btn btn-primary">Add</button>
               </div>

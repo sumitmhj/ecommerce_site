@@ -44,6 +44,29 @@ $row = $result->fetch_assoc();
     </div>
 
     <div class = "col-md-9">
+    <label for = "aaa" class="form-label">Gender</label>
+    
+                    
+               
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" value="M" name="gender" <?php if($row["gender"] === "M"){echo "checked";} ?>>
+                  <label class="form-check-label" for="flexCheckDefault">
+                      Male
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" value="F" name="gender" <?php if($row["gender"] === "F"){echo "checked";} ?>>
+                  <label class="form-check-label" for="flexCheckChecked">
+                       Female
+                  </label>
+                </div>
+              
+                   
+   
+    <!-- <input type = "text" class="form-control" name = "lname" value = "<?php echo $row["gender"]?>"> -->
+    </div>
+
+    <div class = "col-md-9">
     <label for = "aaa" class="form-label">Email Address</label>
     <input type = "text" class="form-control" name = "email" value = "<?php echo $row["email"]?>">
     </div>
@@ -89,7 +112,7 @@ $row = $result->fetch_assoc();
                             {
                                 echo "selected";
                             } ?>>CUSTOMER</option>
-                </select>
+    </select>
    <!--  <input type = "text" class="form-control" name = "role" value = "<?php echo $row["role"]?>"> -->
     </div>
 
