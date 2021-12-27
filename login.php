@@ -14,7 +14,7 @@
 									$email = $_GET['email'];
 									echo '<input type="email" class="form-control" placeholder="Enter email" name="email" value ="'.$email.'">';
 								}else{
-									echo '<input type="email" class="form-control" placeholder="Enter email" name="email" required>';
+									echo '<input type="email" class="form-control" placeholder="Enter email" name="email"  required>';
 								}
 
 								 ?>
